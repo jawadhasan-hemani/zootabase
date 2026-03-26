@@ -5,7 +5,7 @@ import {
   Wrench, LogOut, TicketCheck, CalendarDays,
   Sun, Moon, Users, LineChart, FileText, HeartPulse, ClipboardList, CreditCard, UtensilsCrossed
 } from 'lucide-react';
-import brandLogo from '../assets/images/Logo.png';
+import brandLogo from '../assets/images/zootabase-lo.png';
 import { Toaster, toast } from 'sonner';
 import { AnimatePresence, motion } from 'framer-motion';
 import { useAuth } from '../context/AuthContext';
@@ -96,8 +96,12 @@ const AdminLayout = () => {
       <aside className="admin-sidebar">
         {/* Brand */}
         <div className="admin-brand">
-          <img src={brandLogo} alt="WildWoods Logo" className="admin-brand-logo" />
-          <span className="admin-brand-text">WildWoods</span>
+          <img src={brandLogo} alt="Zootabase Logo" className="admin-brand-logo" />
+
+          <div className="admin-brand-text">
+            <span className="brand-title">Zootabase Zoo</span>
+            {/*<span className="brand-subtitle"><em>For the wild</em></span>*/}
+          </div>
         </div>
 
         <div className="admin-sidebar-divider" />
@@ -161,7 +165,7 @@ const AdminLayout = () => {
         <div className="admin-topbar">
           <div className="admin-topbar-left">
             <span className="admin-topbar-breadcrumb">
-              WildWoods <span>Admin Portal</span>
+              Zootabase <span>Admin Portal</span>
             </span>
           </div>
           <div className="admin-topbar-right">

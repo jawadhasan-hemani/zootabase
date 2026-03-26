@@ -5,7 +5,7 @@ import { useAuth } from '../context/AuthContext';
 import { auth } from '../services/firebase';
 import './UserLayout.css';
 import Footer from './Footer';
-import brandLogo from '../assets/images/Logo.png';
+import brandLogo from '../assets/images/zootabase-lo.png';
 
 const UserIcon = () => <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2} style={{ width: '1rem', height: '1rem' }}><path strokeLinecap="round" strokeLinejoin="round" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" /></svg>;
 const TicketIcon = () => <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2} style={{ width: '1rem', height: '1rem' }}><path strokeLinecap="round" strokeLinejoin="round" d="M15 5v2m0 4v2m0 4v2M5 5a2 2 0 00-2 2v3a2 2 0 110 4v3a2 2 0 002 2h14a2 2 0 002-2v-3a2 2 0 110-4V7a2 2 0 00-2-2H5z" /></svg>;
@@ -31,9 +31,18 @@ const UserLayout = () => {
       <header className="ww-header">
         <div className="ww-header-container">
           <NavLink to="/" className="ww-header-brand">
-            <img src={brandLogo} alt="WildWoods Logo" style={{ width: '56px', height: '56px', objectFit: 'contain' }} />
-            <span className="ww-logo-text">Wildwood Zoo</span>
+            <img 
+              src={brandLogo} 
+              alt="Zootabase Logo"
+              style={{ width: '56px', height: '56px', objectFit: 'contain' }}
+            />
+
+            <div className="ww-logo-text">
+              <span className="ww-logo-title">Zootabase Zoo</span>
+              {/*<span className="ww-logo-subtitle">For the wild</span>*/}
+            </div>
           </NavLink>
+
 
           {/* Desktop Navigation */}
           <nav className="ww-header-nav" aria-label="Main navigation">
@@ -69,6 +78,50 @@ const UserLayout = () => {
             {isOpen ? <XIcon /> : <MenuIcon />}
           </button>
         </div>
+        {isOpen && (
+          <div className="ww-mobile-menu">
+
+            {/* Main nav items */}
+            <NavLink to="/" onClick={() => setIsOpen(false)}>Home</NavLink>
+            <NavLink to="/exhibits" onClick={() => setIsOpen(false)}>Exhibits</NavLink>
+            <NavLink to="/attractions" onClick={() => setIsOpen(false)}>Attractions</NavLink>
+            <NavLink to="/animals" onClick={() => setIsOpen(false)}>Animals</NavLink>
+            <NavLink to="/events" onClick={() => setIsOpen(false)}>Events</NavLink>
+            <NavLink to="/products" onClick={() => setIsOpen(false)}>Gift Shop</NavLink>
+            <NavLink to="/membership" onClick={() => setIsOpen(false)}>Membership</NavLink>
+
+            {/* Separator */}
+            <div className="ww-mobile-separator"></div>
+
+            {/* Login OR Sign Out */}
+            {currentUser ? (
+              <button 
+                className="ww-mobile-signout"
+                onClick={() => { handleLogout(); setIsOpen(false); }}
+              >
+                Sign Out
+              </button>
+            ) : (
+              <NavLink 
+                to="/login" 
+                onClick={() => setIsOpen(false)}
+              >
+                Login
+              </NavLink>
+            )}
+
+            {/* Buy Tickets (always last, always green) */}
+            <NavLink 
+              to="/ticketing" 
+              className="ww-mobile-tickets"
+              onClick={() => setIsOpen(false)}
+            >
+              Buy Tickets
+            </NavLink>
+
+          </div>
+        )}
+
       </header>
 
       <main className="ww-main-content" style={{ flex: 1 }}>
